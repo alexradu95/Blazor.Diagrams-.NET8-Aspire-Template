@@ -1,4 +1,5 @@
 ﻿using Blazor.Diagrams;
+using Microsoft.JSInterop;
 using NazarAspire.Web.Components.Behaviors;
 using Blazor.Diagrams.Core.Anchors;
 using Blazor.Diagrams.Core.Geometry;
