@@ -18,15 +18,8 @@ public partial class Home
         var options = new BlazorDiagramOptions
         {
             AllowMultiSelection = true,
-            Zoom =
-            {
-                Enabled = false,
-            },
-            Links =
-            {
-                DefaultRouter = new NormalRouter(),
-                DefaultPathGenerator = new SmoothPathGenerator()
-            },
+            LinksLayerOrder = 1,
+            NodesLayerOrder = 2,
         };
 
         Diagram = new BlazorDiagram(options);
