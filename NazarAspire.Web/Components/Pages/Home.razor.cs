@@ -42,8 +42,9 @@ public partial class Home
         var targetAnchor = new SinglePortAnchor(leftPort);
         var link = Diagram.Links.Add(new LinkModel(sourceAnchor, targetAnchor));
 
-        //ReplaceBehaviour();
+        // ReplaceBehaviour();
         DemonstrateOrdering();
+        AddKeyboardShortcuts();
     }
 
     private void ReplaceBehaviour()
@@ -76,4 +77,19 @@ public partial class Home
         Diagram.RefreshOrders();
         Console.WriteLine($"After suspending sorting and setting orders - Node 1: {node1.Order}, Node 2: {node2.Order}");
     }
+private void AddKeyboardShortcuts()
+{
+    var ksb = Diagram.GetBehavior<KeyboardShortcutsBehavior>();
+    ksb.SetShortcut("s", ctrl: true, shift: true, alt: true, SaveToMyServer);
+}
+
+private async ValueTask SaveToMyServer()
+{
+    await FakeHttpCall();
+}
+
+private async Task FakeHttpCall()
+{
+    // Simulate an HTTP call
+    await Task.Delay(1000);
 }
