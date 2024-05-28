@@ -42,8 +42,6 @@ public partial class Home
         var svgNode = Diagram.Nodes.Add(new SvgNode(new Point(200, 200)));
         svgNode.AddPort(PortAlignment.Left);
         svgNode.AddPort(PortAlignment.Right);
-        Diagram.Links.Added += OnLinkAdded;
-        Diagram.Links.Removed += OnLinkRemoved;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
