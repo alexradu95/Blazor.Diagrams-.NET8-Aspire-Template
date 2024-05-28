@@ -23,27 +23,11 @@ public partial class Home
 
         Diagram = new BlazorDiagram(options);
 
-        var firstNode = Diagram.Nodes.Add(new NodeModel(position: new Point(50, 50))
-        {
-            Title = "Node 1"
-        });
-        var secondNode = Diagram.Nodes.Add(new NodeModel(position: new Point(200, 100))
-        {
-            Title = "Node 2"
-        });
-        var leftPort = secondNode.AddPort(PortAlignment.Left);
-        var rightPort = secondNode.AddPort(PortAlignment.Right);
+        Diagram.RegisterComponent<AddTwoNumbersNode, AddTwoNumbersWidget>();
 
-        // The connection point will be the intersection of
-        // a line going from the target to the center of the source
-        var sourceAnchor = new ShapeIntersectionAnchor(firstNode);
-        // The connection point will be the port's position
-        var targetAnchor = new SinglePortAnchor(leftPort);
-        var link = Diagram.Links.Add(new LinkModel(sourceAnchor, targetAnchor));
-
-        // ReplaceBehaviour();
-        DemonstrateOrdering();
-        AddKeyboardShortcuts();
+        var addNode = Diagram.Nodes.Add(new AddTwoNumbersNode(new Point(80, 80)));
+        addNode.AddPort(PortAlignment.Top);
+        addNode.AddPort(PortAlignment.Bottom);
     }
 
     private void ReplaceBehaviour()
