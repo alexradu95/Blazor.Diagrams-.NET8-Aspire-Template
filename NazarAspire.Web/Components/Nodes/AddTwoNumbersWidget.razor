@@ -5,6 +5,7 @@
     <h5 class="card-title">Add</h5>
     <input type="number" class="form-control" @bind-value="Node.FirstNumber" placeholder="Number 1" />
     <input type="number" class="form-control" @bind-value="Node.SecondNumber" placeholder="Number 2" />
+    <p>The sum is @Node.Result</p>
 
     @foreach (var port in Node.Ports)
     {

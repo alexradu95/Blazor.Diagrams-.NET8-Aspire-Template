@@ -5,6 +5,7 @@ using Blazor.Diagrams.Core.Geometry;
 using Blazor.Diagrams.Core.Models;
 using Blazor.Diagrams.Options;
 using Blazor.Diagrams.Core.Behaviors;
+using NazarAspire.Web.Components.Nodes;
 
 namespace NazarAspire.Web.Components.Pages;
 
