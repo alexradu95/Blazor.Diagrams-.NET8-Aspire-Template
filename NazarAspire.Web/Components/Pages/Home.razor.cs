@@ -47,5 +47,9 @@ public partial class Home
         // The connection point will be the port's position
         var targetAnchor = new SinglePortAnchor(leftPort);
         var link = Diagram.Links.Add(new LinkModel(sourceAnchor, targetAnchor));
+        // Replace the existing selection behavior with the custom one
+        var oldSelectionBehavior = Diagram.GetBehavior<SelectionBehavior>()!;
+        Diagram.UnregisterBehavior<SelectionBehavior>();
+        Diagram.RegisterBehavior(new MySelectionBehavior(Diagram));
     }
 }
