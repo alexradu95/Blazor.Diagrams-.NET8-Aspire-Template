@@ -35,6 +35,35 @@ public partial class Home
         var svgNode = Diagram.Nodes.Add(new SvgNode(new Point(200, 200)));
         svgNode.AddPort(PortAlignment.Left);
         svgNode.AddPort(PortAlignment.Right);
+        Diagram.Links.Added += OnLinkAdded;
+        Diagram.Links.Removed += OnLinkRemoved;
+    }
+
+    private void OnLinkAdded(BaseLinkModel link)
+    {
+        if (link.Source is SinglePortAnchor && !link.Attached)
+        {
+            link.Attached += OnLinkAttached;
+            link.TargetChanged += OnLinkTargetChanged;
+        }
+    }
+
+    private void OnLinkRemoved(BaseLinkModel link)
+    {
+        link.Attached -= OnLinkAttached;
+        link.TargetChanged -= OnLinkTargetChanged;
+    }
+
+    private void OnLinkAttached(BaseLinkModel link)
+    {
+        Console.WriteLine("Link attached");
+        // Add your custom code here
+    }
+
+    private void OnLinkTargetChanged(BaseLinkModel link)
+    {
+        Console.WriteLine("Link target changed");
+        // Add your custom code here
     }
 
     private void ReplaceBehaviour()
