@@ -1,6 +1,6 @@
 using Blazor.Diagrams.Core.Models.Base;
 using Blazor.Diagrams.Core.Events;
-using Blazor.Diagrams.Core.Behaviors;
+using Blazor.Diagrams.Core;
 
 namespace NazarAspire.Web.Components.Behaviors
 {
