@@ -18,9 +18,9 @@ public partial class Home
 
     [Inject] private IJSRuntime JSRuntime { get; set; } = null!;
 
-    protected override async void OnInitialized()
+    protected override void OnInitialized()
     {
-        await JSRuntime.InvokeVoidAsync("console.log", "OnInitialized called");
+        // Initialization logic here
 
         var options = new BlazorDiagramOptions
         {
@@ -46,9 +46,19 @@ public partial class Home
         Diagram.Links.Removed += OnLinkRemoved;
     }
 
-    private void OnLinkAdded(BaseLinkModel link)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        JSRuntime.InvokeVoidAsync("console.log", "Link added");
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("console.log", "OnAfterRenderAsync called");
+            Diagram.Links.Added += async (link) => await OnLinkAdded(link);
+            Diagram.Links.Removed += async (link) => await OnLinkRemoved(link);
+        }
+    }
+
+    private async Task OnLinkAdded(BaseLinkModel link)
+    {
+        await JSRuntime.InvokeVoidAsync("console.log", "Link added");
 
         if (link.Source is SinglePortAnchor && !link.IsAttached)
         {
@@ -56,29 +66,29 @@ public partial class Home
         }
     }
 
-    private void OnLinkRemoved(BaseLinkModel link)
+    private async Task OnLinkRemoved(BaseLinkModel link)
     {
-        JSRuntime.InvokeVoidAsync("console.log", "Link removed");
+        await JSRuntime.InvokeVoidAsync("console.log", "Link removed");
 
         link.TargetChanged -= (l, oldAnchor, newAnchor) => OnLinkTargetChanged(l);
     }
 
 
-    private void OnLinkTargetChanged(BaseLinkModel link)
+    private async Task OnLinkTargetChanged(BaseLinkModel link)
     {
-        JSRuntime.InvokeVoidAsync("console.log", "Link target changed");
+        await JSRuntime.InvokeVoidAsync("console.log", "Link target changed");
         Console.WriteLine("Link target changed");
         // Add your custom code here
     }
 
-    private void ReplaceBehaviour()
+    private async Task ReplaceBehaviour()
     {
         var oldSelectionBehavior = Diagram.GetBehavior<Blazor.Diagrams.Core.Behaviors.SelectionBehavior>()!;
         Diagram.UnregisterBehavior<Blazor.Diagrams.Core.Behaviors.SelectionBehavior>();
         Diagram.RegisterBehavior(new MySelectionBehavior(Diagram));
     }
 
-    private void DemonstrateOrdering()
+    private async Task DemonstrateOrdering()
     {
         var node1 = Diagram.Nodes.Add(new NodeModel(new Point(50, 50)) { Title = "Node 1" });
         var node2 = Diagram.Nodes.Add(new NodeModel(new Point(200, 100)) { Title = "Node 2" });
@@ -102,13 +112,13 @@ public partial class Home
         Console.WriteLine($"After suspending sorting and setting orders - Node 1: {node1.Order}, Node 2: {node2.Order}");
     }
 
-    private void AddKeyboardShortcuts()
+    private async Task AddKeyboardShortcuts()
     {
         var ksb = Diagram.GetBehavior<KeyboardShortcutsBehavior>();
         ksb.SetShortcut("q", ctrl: false, shift: false, alt: false, async (diagram) => await SaveToMyServer(diagram));
     }
 
-    private async ValueTask SaveToMyServer(Blazor.Diagrams.Core.Diagram diagram)
+    private async Task SaveToMyServer(Blazor.Diagrams.Core.Diagram diagram)
     {
         Console.WriteLine("SaveToMyServer called");
         await Task.Delay(1000); // Simulate an async operation
