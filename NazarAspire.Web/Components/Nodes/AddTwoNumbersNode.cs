@@ -1,5 +1,6 @@
 using Blazor.Diagrams.Core.Geometry;
 using Blazor.Diagrams.Core.Models;
+using NazarAspire.Web.Components.Widgets;
 
 namespace NazarAspire.Web.Components.Nodes;
 
