@@ -1,0 +1,27 @@
+.svg-node .body {
+    fill: #cd803d;
+}
+
+.svg-node .eye {
+    fill: white;
+}
+
+.svg-node .mouth {
+    fill: none;
+    stroke: white;
+    stroke-width: 2px;
+}
+
+.svg-node .limb {
+    stroke: #cd803d;
+    stroke-width: 35px;
+    stroke-linecap: round;
+}
+
+.svg-node .hand {
+    fill: #cd803d;
+}
+
+.svg-node .hand:hover {
+    fill: #75441a;
+}

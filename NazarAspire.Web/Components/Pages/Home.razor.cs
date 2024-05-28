@@ -29,6 +29,11 @@ public partial class Home
         var addNode = Diagram.Nodes.Add(new AddTwoNumbersNode(new Point(80, 80)));
         addNode.AddPort(PortAlignment.Top);
         addNode.AddPort(PortAlignment.Bottom);
+        Diagram.RegisterComponent<SvgNode, SvgWidget>();
+
+        var svgNode = Diagram.Nodes.Add(new SvgNode(new Point(200, 200)));
+        svgNode.AddPort(PortAlignment.Left);
+        svgNode.AddPort(PortAlignment.Right);
     }
 
     private void ReplaceBehaviour()
