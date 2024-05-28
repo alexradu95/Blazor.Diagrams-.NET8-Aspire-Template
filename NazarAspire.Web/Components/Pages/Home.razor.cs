@@ -42,7 +42,7 @@ public partial class Home
 
     private void OnLinkAdded(BaseLinkModel link)
     {
-        if (link.Source is SinglePortAnchor && !link.Attached)
+        if (link.Source is SinglePortAnchor && !link.IsAttached)
         {
             link.TargetChanged += (l, oldAnchor, newAnchor) => OnLinkTargetChanged(l);
         }
