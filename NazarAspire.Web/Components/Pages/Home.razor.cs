@@ -1,4 +1,5 @@
 ﻿using Blazor.Diagrams;
+using NazarAspire.Web.Components.Behaviors;
 using Blazor.Diagrams.Core.Anchors;
 using Blazor.Diagrams.Core.Geometry;
 using Blazor.Diagrams.Core.Models;
@@ -48,8 +49,8 @@ public partial class Home
         var targetAnchor = new SinglePortAnchor(leftPort);
         var link = Diagram.Links.Add(new LinkModel(sourceAnchor, targetAnchor));
         // Replace the existing selection behavior with the custom one
-        var oldSelectionBehavior = Diagram.GetBehavior<SelectionBehavior>()!;
-        Diagram.UnregisterBehavior<SelectionBehavior>();
+        var oldSelectionBehavior = Diagram.GetBehavior<Blazor.Diagrams.Core.Behaviors.SelectionBehavior>()!;
+        Diagram.UnregisterBehavior<Blazor.Diagrams.Core.Behaviors.SelectionBehavior>();
         Diagram.RegisterBehavior(new MySelectionBehavior(Diagram));
     }
 }

@@ -19,7 +19,7 @@ namespace NazarAspire.Web.Components.Behaviors
             }
             else if (model is SelectableModel sm)
             {
-                Diagram.SelectModel(sm);
+                Diagram.SelectModel(sm, true);
             }
         }
 
