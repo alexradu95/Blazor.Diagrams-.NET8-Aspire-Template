@@ -20,7 +20,11 @@ public partial class Home
             AllowMultiSelection = true,
             LinksLayerOrder = 1,
             NodesLayerOrder = 2,
+            AllowLinkAttachment = true,
+            AllowLinkDetachment = true
         };
+
+        Diagram.RegisterBehavior(new LinkAttachmentBehavior(Diagram));
 
         Diagram = new BlazorDiagram(options);
 
