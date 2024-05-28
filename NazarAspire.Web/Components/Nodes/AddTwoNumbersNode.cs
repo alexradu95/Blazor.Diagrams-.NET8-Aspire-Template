@@ -3,7 +3,7 @@ using Blazor.Diagrams.Core.Models;
 
 namespace NazarAspire.Web.Components.Nodes;
 
-public class AddTwoNumbersNode : NodeModel
+public class AddTwoNumbersNode : BaseWidget
 {
     public AddTwoNumbersNode(Point? position = null) : base(position) { }
 

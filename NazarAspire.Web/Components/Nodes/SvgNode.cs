@@ -3,7 +3,7 @@ using Blazor.Diagrams.Models;
 
 namespace NazarAspire.Web.Components.Nodes;
 
-public class SvgNode : SvgNodeModel
+public class SvgNode : BaseWidget
 {
     public SvgNode(Point? position = null) : base(position) { }
 
