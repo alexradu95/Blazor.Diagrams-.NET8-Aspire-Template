@@ -14,9 +14,11 @@ public partial class Home
 {
     private BlazorDiagram Diagram { get; set; } = null!;
 
-    protected override void OnInitialized()
+    [Inject] private IJSRuntime JSRuntime { get; set; } = null!;
+
+    protected override async void OnInitialized()
     {
-        Console.WriteLine("OnInitialized called");
+        await JSRuntime.InvokeVoidAsync("console.log", "OnInitialized called");
 
         var options = new BlazorDiagramOptions
         {
@@ -44,7 +46,7 @@ public partial class Home
 
     private void OnLinkAdded(BaseLinkModel link)
     {
-        Console.WriteLine("Link added");
+        await JSRuntime.InvokeVoidAsync("console.log", "Link added");
 
         if (link.Source is SinglePortAnchor && !link.IsAttached)
         {
@@ -54,7 +56,7 @@ public partial class Home
 
     private void OnLinkRemoved(BaseLinkModel link)
     {
-        Console.WriteLine("Link removed");
+        await JSRuntime.InvokeVoidAsync("console.log", "Link removed");
 
         link.TargetChanged -= (l, oldAnchor, newAnchor) => OnLinkTargetChanged(l);
     }
@@ -62,7 +64,7 @@ public partial class Home
 
     private void OnLinkTargetChanged(BaseLinkModel link)
     {
-        Console.WriteLine("Link target changed");
+        await JSRuntime.InvokeVoidAsync("console.log", "Link target changed");
         Console.WriteLine("Link target changed");
         // Add your custom code here
     }
