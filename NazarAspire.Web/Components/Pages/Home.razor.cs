@@ -9,6 +9,8 @@ using Blazor.Diagrams.Core.Behaviors;
 using NazarAspire.Web.Components.Nodes;
 using Blazor.Diagrams.Core.Models.Base;
 using Microsoft.AspNetCore.Components;
+using Blazor.Diagrams.Core.Controls;
+using Blazor.Diagrams.Core.Controls.Default;
 
 namespace NazarAspire.Web.Components.Pages;
 
