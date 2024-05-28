@@ -80,17 +80,12 @@ public partial class Home
     private void AddKeyboardShortcuts()
     {
         var ksb = Diagram.GetBehavior<KeyboardShortcutsBehavior>();
-        ksb.SetShortcut("s", ctrl: true, shift: true, alt: true, SaveToMyServer);
+        ksb.SetShortcut("s", ctrl: true, shift: true, alt: true, async (diagram) => await SaveToMyServer(diagram));
     }
 
-    private async ValueTask SaveToMyServer()
+    private async ValueTask SaveToMyServer(Blazor.Diagrams.Core.Diagram diagram)
     {
-        await FakeHttpCall();
-    }
-
-    private async Task FakeHttpCall()
-    {
-        // Simulate an HTTP call
-        await Task.Delay(1000);
+        Console.WriteLine("SaveToMyServer called");
+        await Task.Delay(1000); // Simulate an async operation
     }
 }
