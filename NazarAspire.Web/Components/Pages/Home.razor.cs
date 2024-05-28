@@ -44,22 +44,15 @@ public partial class Home
     {
         if (link.Source is SinglePortAnchor && !link.Attached)
         {
-            link.Attached += OnLinkAttached;
-            link.TargetChanged += OnLinkTargetChanged;
+            link.TargetChanged += (l, oldAnchor, newAnchor) => OnLinkTargetChanged(l);
         }
     }
 
     private void OnLinkRemoved(BaseLinkModel link)
     {
-        link.Attached -= OnLinkAttached;
-        link.TargetChanged -= OnLinkTargetChanged;
+        link.TargetChanged -= (l, oldAnchor, newAnchor) => OnLinkTargetChanged(l);
     }
 
-    private void OnLinkAttached(BaseLinkModel link)
-    {
-        Console.WriteLine("Link attached");
-        // Add your custom code here
-    }
 
     private void OnLinkTargetChanged(BaseLinkModel link)
     {
