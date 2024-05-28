@@ -16,6 +16,8 @@ public partial class Home
 
     protected override void OnInitialized()
     {
+        Console.WriteLine("OnInitialized called");
+
         var options = new BlazorDiagramOptions
         {
             AllowMultiSelection = true,
@@ -42,6 +44,8 @@ public partial class Home
 
     private void OnLinkAdded(BaseLinkModel link)
     {
+        Console.WriteLine("Link added");
+
         if (link.Source is SinglePortAnchor && !link.IsAttached)
         {
             link.TargetChanged += (l, oldAnchor, newAnchor) => OnLinkTargetChanged(l);
@@ -50,12 +54,15 @@ public partial class Home
 
     private void OnLinkRemoved(BaseLinkModel link)
     {
+        Console.WriteLine("Link removed");
+
         link.TargetChanged -= (l, oldAnchor, newAnchor) => OnLinkTargetChanged(l);
     }
 
 
     private void OnLinkTargetChanged(BaseLinkModel link)
     {
+        Console.WriteLine("Link target changed");
         Console.WriteLine("Link target changed");
         // Add your custom code here
     }
