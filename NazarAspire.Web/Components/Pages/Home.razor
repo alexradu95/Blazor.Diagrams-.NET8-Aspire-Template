@@ -6,6 +6,17 @@
 
 <div class="diagram-container">
     <CascadingValue Value="Diagram" IsFixed="true">
-        <DiagramCanvas></DiagramCanvas>
+        <DiagramCanvas>
+            <AdditionalHtml>
+                <!-- EXTRA HTML -->
+                <div class="extra-html-content">
+                    <p>This is additional HTML content.</p>
+                </div>
+            </AdditionalHtml>
+            <AdditionalSvg>
+                <!-- EXTRA SVG -->
+                <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+            </AdditionalSvg>
+        </DiagramCanvas>
     </CascadingValue>
 </div>
