@@ -42,6 +42,26 @@ public partial class Home
         var svgNode = Diagram.Nodes.Add(new SvgNode(new Point(200, 200)));
         svgNode.AddPort(PortAlignment.Left);
         svgNode.AddPort(PortAlignment.Right);
+        // Initialize controls for nodes
+        var node1Controls = Diagram.Controls.AddFor(addNode); // OnSelection default
+        var node2Controls = Diagram.Controls.AddFor(svgNode, ControlsType.OnHover);
+
+        // Add controls
+        node1Controls.Add(new BoundaryControl());
+        node1Controls.Add(new RemoveControl(0.5, 0)); // Top center
+
+        node2Controls.Add(new BoundaryControl());
+        node2Controls.Add(new RemoveControl(0.5, 0)); // Top center
+
+        // Optionally, demonstrate how to get, show, hide, and remove controls
+        node1Controls = Diagram.Controls.GetFor(addNode);
+        node2Controls = Diagram.Controls.GetFor(svgNode);
+
+        node1Controls.Show();
+        node2Controls.Hide();
+
+        // Remove all controls for a model
+        Diagram.Controls.RemoveFor(addNode);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
