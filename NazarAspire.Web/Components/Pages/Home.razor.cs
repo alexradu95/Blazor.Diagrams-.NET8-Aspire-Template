@@ -8,6 +8,7 @@ using Blazor.Diagrams.Options;
 using Blazor.Diagrams.Core.Behaviors;
 using NazarAspire.Web.Components.Nodes;
 using Blazor.Diagrams.Core.Models.Base;
+using Microsoft.AspNetCore.Components;
 
 namespace NazarAspire.Web.Components.Pages;
 
@@ -47,7 +48,7 @@ public partial class Home
 
     private void OnLinkAdded(BaseLinkModel link)
     {
-        await JSRuntime.InvokeVoidAsync("console.log", "Link added");
+        JSRuntime.InvokeVoidAsync("console.log", "Link added");
 
         if (link.Source is SinglePortAnchor && !link.IsAttached)
         {
@@ -57,7 +58,7 @@ public partial class Home
 
     private void OnLinkRemoved(BaseLinkModel link)
     {
-        await JSRuntime.InvokeVoidAsync("console.log", "Link removed");
+        JSRuntime.InvokeVoidAsync("console.log", "Link removed");
 
         link.TargetChanged -= (l, oldAnchor, newAnchor) => OnLinkTargetChanged(l);
     }
@@ -65,7 +66,7 @@ public partial class Home
 
     private void OnLinkTargetChanged(BaseLinkModel link)
     {
-        await JSRuntime.InvokeVoidAsync("console.log", "Link target changed");
+        JSRuntime.InvokeVoidAsync("console.log", "Link target changed");
         Console.WriteLine("Link target changed");
         // Add your custom code here
     }
