@@ -19,4 +19,31 @@
             </AdditionalSvg>
         </DiagramCanvas>
     </CascadingValue>
+    <button @onclick="DemonstrateOrdering">Demonstrate Ordering</button>
 </div>
+
+@code {
+    private void DemonstrateOrdering()
+    {
+        var node1 = Diagram.Nodes.Add(new NodeModel(new Point(50, 50)) { Title = "Node 1" });
+        var node2 = Diagram.Nodes.Add(new NodeModel(new Point(200, 100)) { Title = "Node 2" });
+
+        Console.WriteLine($"Initial Order - Node 1: {node1.Order}, Node 2: {node2.Order}");
+
+        node1.Order = 10;
+        Console.WriteLine($"After setting Node 1 Order to 10 - Node 1: {node1.Order}, Node 2: {node2.Order}");
+
+        Diagram.SendToFront(node2);
+        Console.WriteLine($"After sending Node 2 to front - Node 1: {node1.Order}, Node 2: {node2.Order}");
+
+        Diagram.SendToBack(node2);
+        Console.WriteLine($"After sending Node 2 to back - Node 1: {node1.Order}, Node 2: {node2.Order}");
+
+        Diagram.SuspendSorting = true;
+        node1.Order = 100;
+        node2.Order = 200;
+        Diagram.SuspendSorting = false;
+        Diagram.RefreshOrders();
+        Console.WriteLine($"After suspending sorting and setting orders - Node 1: {node1.Order}, Node 2: {node2.Order}");
+    }
+}
